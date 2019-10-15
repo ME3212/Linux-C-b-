@@ -18,6 +18,85 @@ if(x==0.0) if(x!=0.0)
 3.switch(表达式）语句中不能作为表达式值的类型是什么？
 表达式的值类型必须是整型（char字符型在内存中以ASCII码来存储，因此也可以），其他类型都不行。
 
-4.
+4.解释关键字static，并说明至少两种用途。
+静态变量分为两种：全局静态变量和局部静态变量。全局静态变量是在所有函数之外定义的静态变量，局部变量是在某个函数内部（比如main函数）定义的变量。
+静态变量存储在静态存储区，静态存储区在程序整个运行期间都存在。未经初始化的静态变量会被程序自动初始化为0（自动对象的值是任意的，除非被显示初始化）。
+全局静态变量的作用域是从定义之处开始到文件结尾。全局静态变量是对其他文件不可见的。局部静态变量只在定义的函数内部作用。
+作用：1.限制变量的作用域           2.设置变量的存储域
 
+程序的普通局部变量存在于堆栈中，全局变量，static局部变量存在于静态存储区中。
+
+5.输出程序运行结果
+int inc(int a){
+	
+	return (++a);
+}
+
+int multi(int *a,int *b,int *c){
+	return (*c=*a**b);
+}
+
+int (*p)(int);
+
+void show(int(*fun)(int*,int*,int*),int arg1,int *arg2){
+	
+	p=&inc;
+	int temp =p(arg1);
+	fun(&temp,&arg1,arg2);
+	printf("%d\n",arg2);
+}
+
+int main(){
+	int a;
+	show(multi,10,&a);
+	return 0;
+}
+
+5.#include<stdio.h> 
+
+int inc(int a){
+	
+	return (++a);
+}
+
+int multi(int *a,int *b,int *c){
+	return (*c=*a**b);
+}
+
+int (*p)(int);
+
+void show(int(*fun)(int*,int*,int*),int arg1,int *arg2){
+	
+	p=&inc;
+	int temp =p(arg1);
+	fun(&temp,&arg1,arg2);
+	printf("%d\n",arg2);
+}
+
+int main(){
+	int a;
+	show(multi,10,&a);
+	return 0;
+}
+
+6.找出代码里的错误。这段代码的功能是把一个字符串倒序，如“abcd"变成"cdba".
+#include<stdio.h>
+#include<string.h>
+#include<stdlib.h>
+int main(){
+char *src="hello world";
+char *dest=NULL;
+int len=strlen(src);
+dest = (char *)malloc(len);
+char *d=dest;
+char *s=&src[len];
+while(len--!=0)
+*d++=*s--;
+printf("%s\n",dest);
+return 0;
+}
+
+(1) (2) (3) (4)
+
+7.
 
