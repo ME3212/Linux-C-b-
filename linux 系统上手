@@ -40,6 +40,26 @@
   退出分屏 wq   退出并保存所有 wqall 全部退出 qall  只关一个q
   垂直分屏：vsp 
            vsp 文件名(mainwindow.cpp)  
+9.ubuntu系统问题有点多：1终端不能输入中文，这就造成了访问文件夹不便；2使用cd切换文件夹时总会出现没有那个文件；3使用vi编写
+的代码不会保存在桌面，而是保存在home，我以为这给新手运行代码的时候造成了不方便；4使用网上的方法加入中文输入法后在右上角会
+出现乱码，而且在终端也时常会出现不能使用中文输入的情况，而且在gedit里也会不能使用。综上我换成了Redhat6.2
+
+10.乌班图系统会开机自装gcc g++ gdb Redhat只自带了gcc，但是g++,gdb都在光盘映像里。这个时候就要自己挂载光盘映像安装了。
+在虚拟机目录下右击本虚拟机，点击可移动设备，选中CD，将路径设置为光盘映像的路径，这个时候光盘映像的文件系统就会出现在桌面。
+接下来要将终端里普通用户权限切换成root用户权限：su root（与之对应的操作是su 用户名）输入密码就好了。接下来就要切换到/mnt/packages
+文件夹查找g++,gdb的文件。若用cd指令切换失败，我的做法是去文件里找到packages这个文件夹然后拖动到终端里，路径就会被引号引起来放在
+终端里，去掉引号，在前面加上cd 就可以切换成功。
+
+11.以装gcc-c++为例
+接下来查找，安装文件，查找指令find . -maxdepth 1 -name "libstdc++*"(注意空格！）
+找出来三个，使用指令rpm -ivh 文件名 装前两个。
+查找gcc-c++开头的文件find . -maxdepth 1 -name "gcc-c++*"
+安装rpm -ivh 文件名
+完成安装。输入g++会看到没有输入文件。（参见https://blog.csdn.net/mylinchi/article/details/52995116 
+https://blog.csdn.net/MyLinChi/article/details/52996914?utm_source=blogxgwz8）
+
+
+
     
     
     
